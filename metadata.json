@@ -1,0 +1,7 @@
+{
+  "name": "Wedding Invitation",
+  "description": "An elegant, AI-themed wedding invitation for a couple of AI engineers, featuring generative story-telling and intelligent venue grounding.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
