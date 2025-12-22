@@ -1,12 +1,11 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 
 // Story generation service for the wedding couple's history
 export const generateStory = async (style: string) => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   const model = 'gemini-3-flash-preview';
-  const prompt = `Rewrite the romantic story of two AI engineers, Alex and Sam, who are getting married in February 2026. 
-  They met during an AI hackathon. Alex was working on computer vision and Sam was working on LLMs. 
+  const prompt = `Rewrite the romantic story of two AI engineers, Muhammad Danial Siddiqui and Noor Fatima Memon, who are getting married in February 2026. 
+  They met during an AI hackathon. Danial was working on computer vision and Noor was working on LLMs. 
   They bonded over fine-tuning models and coffee. Write it in a ${style} style. 
   Keep it under 150 words. Focus on the merging of their lives like a successful model merge.`;
 
@@ -76,7 +75,7 @@ export const generateRSVPAcknowledgment = async (data: { name: string; attending
   const model = 'gemini-3-flash-preview';
   const prompt = `Generate a short, warm, and tech-witty wedding RSVP acknowledgment for a guest named ${data.name} who is ${data.attending ? 'attending' : 'not attending'}. 
   Their message to us was: "${data.message}". 
-  We are two AI engineers, Alex and Sam getting married in Feb 2026. Keep it under 50 words.`;
+  We are two AI engineers, Muhammad Danial Siddiqui and Noor Fatima Memon getting married in Feb 2026. Keep it under 50 words.`;
 
   try {
     const response = await ai.models.generateContent({

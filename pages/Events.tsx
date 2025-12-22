@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
-// Master list of all wedding events
+// Master list of all wedding events with visual icons
 const ALL_EVENTS = [
-  { day: "1", date: "3 Feb 2026", title: "Dua-e-Khair", time: "4:00 PM", location: "Groom's Residence" },
-  { day: "1", date: "3 Feb 2026", title: "Ubtan", time: "8:00 PM", location: "Groom's Residence" },
-  { day: "2", date: "5 Feb 2026", title: "Barat", time: "3:00 PM", location: "Main Hall", note: "Please come early as we need to leave for Hyderabad" },
-  { day: "3", date: "6 Feb 2026", title: "Mehndi", time: "7:00 PM", location: "The Grand Lawn" },
-  { day: "3", date: "6 Feb 2026", title: "Qawali Night", time: "11:00 PM", location: "The Grand Lawn" },
-  { day: "4", date: "7 Feb 2026", title: "Walima", time: "7:00 PM", location: "The Glass House, Cupertino" }
+  { day: "1", date: "3 Feb 2026", title: "Dua-e-Khair", icon: "🤲", time: "4:00 PM", location: "Groom's Residence" },
+  { day: "1", date: "3 Feb 2026", title: "Ubtan", icon: "✨", time: "8:00 PM", location: "Groom's Residence" },
+  { day: "2", date: "5 Feb 2026", title: "Barat", icon: "💍", time: "3:00 PM", location: "Main Hall", note: "Please come early as we need to leave for Hyderabad" },
+  { day: "3", date: "6 Feb 2026", title: "Mehndi", icon: "🌿", time: "7:00 PM", location: "The Grand Lawn" },
+  { day: "3", date: "6 Feb 2026", title: "Qawali Night", icon: "🎶", time: "11:00 PM", location: "The Grand Lawn" },
+  { day: "4", date: "7 Feb 2026", title: "Walima", icon: "🥂", time: "7:00 PM", location: "The Glass House, Cupertino" }
 ];
 
-const EventCard = ({ day, date, title, time, note, location, index }: any) => (
+const EventCard = ({ day, date, title, time, note, location, index, icon }: any) => (
   <div 
     role="listitem"
     className="reveal bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 flex flex-col md:flex-row gap-8 items-start hover:shadow-xl hover:scale-[1.01] hover:border-maroon/20 transition-all duration-500"
@@ -19,9 +19,15 @@ const EventCard = ({ day, date, title, time, note, location, index }: any) => (
     <div className="md:w-1/4">
       <div className="text-maroon font-bold text-sm tracking-widest uppercase mb-2">Day {day}</div>
       <div className="serif text-3xl text-slate-900">{date}</div>
+      <div className="mt-4 text-4xl opacity-20 grayscale group-hover:grayscale-0 transition-all" aria-hidden="true">
+        {icon}
+      </div>
     </div>
     <div className="flex-1 space-y-4">
-      <h3 className="serif text-4xl text-maroon">{title}</h3>
+      <div className="flex items-center gap-4">
+        <span className="text-3xl md:text-4xl" aria-hidden="true">{icon}</span>
+        <h3 className="serif text-4xl text-maroon">{title}</h3>
+      </div>
       <div className="flex flex-wrap items-center gap-4 md:gap-8 text-slate-500 font-medium">
         <span className="flex items-center gap-1" aria-label={`Time: ${time}`}>🕒 {time}</span>
         <span className="flex items-center gap-1" aria-label={`Location: ${location}`}>📍 {location}</span>

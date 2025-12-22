@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Hero: React.FC = () => {
@@ -12,11 +11,11 @@ const Hero: React.FC = () => {
       <div className="relative z-10 text-center px-4 max-w-4xl">
         <div className="mb-6 inline-block">
           <span className="mono text-xs tracking-widest uppercase text-slate-400 bg-white/50 px-3 py-1 rounded-full border border-slate-200">
-            System Initialization: 2024.10.12
+            System Initialization: 2026.02.03
           </span>
         </div>
-        <h1 className="text-6xl md:text-8xl mb-6 text-slate-800 tracking-tight leading-none">
-          Alex <span className="text-slate-300 font-light">&</span> Sam
+        <h1 className="text-4xl md:text-6xl mb-6 text-slate-800 tracking-tight leading-none px-4">
+          Muhammad Danial Siddiqui <span className="text-slate-300 font-light">&</span> Noor Fatima Memon
         </h1>
         <p className="serif text-xl md:text-2xl text-slate-500 italic mb-12">
           Converging in Love, Synchronized in Purpose

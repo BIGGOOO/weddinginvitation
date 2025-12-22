@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import StorySection from '../components/StorySection';
+import CelebrationOverlay, { useCelebration } from '../components/Celebration';
 
 interface HomeProps {
   onNavigate: (page: 'home' | 'events' | 'photos') => void;
@@ -15,6 +16,8 @@ interface TimeLeft {
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const [scrollY, setScrollY] = useState(0);
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
+  const { particles, trigger } = useCelebration();
+  const [hasClickedComing, setHasClickedComing] = useState(false);
   
   const calculateTimeLeft = (): TimeLeft | null => {
     const targetDate = new Date('2026-02-03T00:00:00').getTime();
@@ -58,8 +61,20 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
     };
   }, []);
 
+  const handleImComing = (e: React.MouseEvent) => {
+    trigger(e.clientX, e.clientY);
+    setHasClickedComing(true);
+    // Persist intent locally
+    localStorage.setItem('quick_rsvp_coming', 'true');
+    
+    // Reset after a few seconds to allow multiple clicks if they want more fun
+    setTimeout(() => setHasClickedComing(false), 3000);
+  };
+
   return (
     <div className="animate-in fade-in duration-700 overflow-hidden">
+      <CelebrationOverlay particles={particles} />
+      
       {/* Hero Section with Parallax */}
       <section 
         className="relative h-[95vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden"
@@ -110,20 +125,27 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                 </div>
               )}
             </div>
-            <div className="mt-6 flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-gold animate-ping"></span>
-              <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Neural Sync in Progress</span>
-            </div>
           </div>
           
-          <button 
-            onClick={() => onNavigate('events')}
-            aria-label="View Wedding Events Schedule"
-            className="px-12 py-5 bg-maroon text-white rounded-full hover:bg-[#600000] transition-all shadow-xl hover:shadow-maroon/30 text-lg font-medium reveal hover:scale-105"
-            style={{ transitionDelay: '0.7s' }}
-          >
-            Explore the Events
-          </button>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 reveal" style={{ transitionDelay: '0.7s' }}>
+            <button 
+              onClick={() => onNavigate('events')}
+              className="px-12 py-5 bg-maroon text-white rounded-full hover:bg-[#600000] transition-all shadow-xl hover:shadow-maroon/30 text-lg font-medium hover:scale-105"
+            >
+              Explore the Events
+            </button>
+
+            {/* Fun "I'm Coming" Button */}
+            <button 
+              onClick={handleImComing}
+              className={`group flex items-center gap-3 px-8 py-5 bg-white text-maroon border border-maroon/20 rounded-full hover:border-maroon transition-all shadow-lg hover:shadow-xl font-bold uppercase tracking-widest text-sm relative overflow-hidden ${hasClickedComing ? 'scale-110 border-maroon' : ''}`}
+            >
+              <span className={`text-xl transition-transform group-hover:scale-125 ${hasClickedComing ? 'animate-bounce' : 'animate-pulse-soft'}`}>
+                {hasClickedComing ? '❤️' : '💖'}
+              </span>
+              <span>{hasClickedComing ? "See You Soon!" : "I'm Coming!"}</span>
+            </button>
+          </div>
         </div>
       </section>
 

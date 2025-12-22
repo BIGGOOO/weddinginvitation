@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import Events from './pages/Events';
@@ -37,7 +36,7 @@ const App: React.FC = () => {
             onClick={() => setCurrentPage('home')}
             onKeyDown={(e) => e.key === 'Enter' && setCurrentPage('home')}
           >
-            Lovely Invitation
+            Danial & Noor
           </div>
           <div className="flex items-center gap-4 md:gap-8">
             <button 
@@ -72,7 +71,7 @@ const App: React.FC = () => {
       <footer role="contentinfo" className="py-16 px-6 bg-white border-t border-slate-100 text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="serif text-2xl mb-4 text-maroon italic">“We look forward to celebrating with you”</h2>
-          <p className="text-slate-900 font-semibold text-lg mb-2">Alex & Sam</p>
+          <p className="text-slate-900 font-semibold text-lg mb-2">Muhammad Danial Siddiqui & Noor Fatima Memon</p>
           <p className="text-slate-400 text-sm">Contact: <a href="mailto:hello@lovelyinvitation.com" className="hover:text-maroon underline">hello@lovelyinvitation.com</a></p>
           <div className="mt-8 pt-8 border-t border-slate-50">
             <p className="text-[10px] uppercase tracking-widest text-slate-300">

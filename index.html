@@ -1,16 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lovely Invitation | Alex & Sam</title>
+    <title>Lovely Invitation | Danial & Noor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --ivory: #FCFBF4;
-            --gold: #B8860B; /* Darkened for better contrast against ivory */
+            --gold: #B8860B; 
             --maroon: #800000;
             --charcoal: #333333;
         }
@@ -79,6 +78,25 @@
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Heart & Celebration Animations */
+        @keyframes heartPop {
+            0% { transform: scale(0) translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(1.5) translateY(-100px) rotate(45deg); opacity: 0; }
+        }
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: heartPop 1s ease-out forwards;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 2s infinite ease-in-out;
         }
     </style>
 <script type="importmap">
