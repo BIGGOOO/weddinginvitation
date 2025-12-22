@@ -18,6 +18,7 @@
             background-color: var(--ivory);
             color: var(--charcoal);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         h1, h2, h3, .serif {
             font-family: 'Playfair Display', serif;
@@ -78,6 +79,46 @@
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Timeline Glow Effect */
+        .event-card-glow {
+            transition: all 0.5s ease;
+        }
+        .reveal.active.event-card-glow {
+            box-shadow: 0 0 30px rgba(184, 134, 11, 0.1);
+            border-color: rgba(184, 134, 11, 0.2);
+        }
+
+        /* Floating Particles Keyframes */
+        @keyframes float-particle {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Shine Effect for Buttons */
+        @keyframes shine {
+            100% { left: 125%; }
+        }
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: none;
+        }
+        .btn-shine:hover::after {
+            animation: shine 0.75s forwards;
         }
 
         /* Heart & Celebration Animations */

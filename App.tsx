@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import Events from './pages/Events';
@@ -25,7 +26,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
       <header role="banner" className="fixed top-0 left-0 right-0 z-50 bg-[#FCFBF4]/80 backdrop-blur-md border-b border-slate-100">
         <nav role="navigation" aria-label="Primary Navigation" className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div 

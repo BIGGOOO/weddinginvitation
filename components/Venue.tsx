@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { getVenueGrounding } from '../services/geminiService';
 
@@ -33,8 +32,8 @@ const Venue: React.FC = () => {
       }
 
       try {
-        // Mocking a specific high-end venue for an AI engineer
-        const data = await getVenueGrounding("The Glass House, Cupertino", lat, lng);
+        // Use coordinates provided for Walima/Celebration venue
+        const data = await getVenueGrounding("24.911276, 67.238557", lat, lng);
         setVenueData(data);
       } catch (err) {
         console.error("Error fetching venue data:", err);
@@ -57,8 +56,8 @@ const Venue: React.FC = () => {
                 <span className="text-xl">📍</span>
               </div>
               <div>
-                <h3 className="font-semibold text-slate-900">The Glass House</h3>
-                <p>250 Main St, San Jose, CA 95113</p>
+                <h3 className="font-semibold text-slate-900">Celebration Venue</h3>
+                <p>24.911276, 67.238557, Karachi</p>
               </div>
             </div>
 
@@ -67,8 +66,8 @@ const Venue: React.FC = () => {
                 <span className="text-xl">📅</span>
               </div>
               <div>
-                <h3 className="font-semibold text-slate-900">October 12th, 2024</h3>
-                <p>Ceremony at 4:30 PM • Reception to Follow</p>
+                <h3 className="font-semibold text-slate-900">Feb 6th - 7th, 2026</h3>
+                <p>Events start at 7:00 PM</p>
               </div>
             </div>
 
@@ -78,7 +77,7 @@ const Venue: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-slate-900">Dress Code</h3>
-                <p>Modern Formal • Think "Silicon Valley Gala"</p>
+                <p>Modern Formal • Cultural Fusion</p>
               </div>
             </div>
           </div>
@@ -116,7 +115,7 @@ const Venue: React.FC = () => {
               ) : (
                 <div className="space-y-4">
                   <p className="serif italic text-slate-500">
-                    {venueData?.description || "An elegant glass-walled sanctuary perfect for a digital union."}
+                    {venueData?.description || "An elegant open-air space perfect for a cultural and digital union."}
                   </p>
                   {venueData?.uri && (
                     <a 
@@ -134,7 +133,7 @@ const Venue: React.FC = () => {
             
             <div className="mt-8">
               <img 
-                src="https://picsum.photos/seed/venue/600/400" 
+                src="https://picsum.photos/seed/wedding-venue/600/400" 
                 alt="Venue" 
                 className="w-full h-48 object-cover rounded-xl"
               />

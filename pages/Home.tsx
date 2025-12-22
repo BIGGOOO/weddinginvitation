@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import StorySection from '../components/StorySection';
 import CelebrationOverlay, { useCelebration } from '../components/Celebration';
+import FloatingParticles from '../components/FloatingParticles';
 
 interface HomeProps {
   onNavigate: (page: 'home' | 'events' | 'photos') => void;
@@ -72,7 +73,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="animate-in fade-in duration-700 overflow-hidden">
+    <div className="animate-in fade-in duration-700 overflow-hidden relative">
+      <FloatingParticles />
       <CelebrationOverlay particles={particles} />
       
       {/* Hero Section with Parallax */}
@@ -130,7 +132,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 reveal" style={{ transitionDelay: '0.7s' }}>
             <button 
               onClick={() => onNavigate('events')}
-              className="px-12 py-5 bg-maroon text-white rounded-full hover:bg-[#600000] transition-all shadow-xl hover:shadow-maroon/30 text-lg font-medium hover:scale-105"
+              className="px-12 py-5 bg-maroon text-white rounded-full hover:bg-[#600000] transition-all shadow-xl hover:shadow-maroon/30 text-lg font-medium hover:scale-105 btn-shine"
             >
               Explore the Events
             </button>
@@ -150,7 +152,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       </section>
 
       {/* Welcome Section */}
-      <section className="py-24 px-6 text-center">
+      <section className="py-24 px-6 text-center relative z-10">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl mb-8 text-maroon reveal">Welcome</h2>
           <p className="text-lg text-slate-600 leading-relaxed mb-12 reveal" style={{ transitionDelay: '0.2s' }}>
@@ -166,7 +168,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       <StorySection />
 
       {/* Highlights Section */}
-      <section className="py-24 px-6 bg-white">
+      <section className="py-24 px-6 bg-white relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
