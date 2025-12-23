@@ -1,20 +1,22 @@
-
 import React, { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import Events from './pages/Events';
 import Photos from './pages/Photos';
+import LoadingScreen from './components/LoadingScreen';
 
 type Page = 'home' | 'events' | 'photos';
 
 const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState<Page>('home');
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    // Focus management for SPAs: help screen readers know page changed
-    const mainContent = document.getElementById('main-content');
-    if (mainContent) mainContent.focus();
-  }, [currentPage]);
+    if (!isLoading) {
+      window.scrollTo(0, 0);
+      const mainContent = document.getElementById('main-content');
+      if (mainContent) mainContent.focus();
+    }
+  }, [currentPage, isLoading]);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -25,19 +27,23 @@ const App: React.FC = () => {
     }
   };
 
+  if (isLoading) {
+    return <LoadingScreen onComplete={() => setIsLoading(false)} />;
+  }
+
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-screen flex flex-col relative animate-in fade-in duration-1000">
       <header role="banner" className="fixed top-0 left-0 right-0 z-50 bg-[#FCFBF4]/80 backdrop-blur-md border-b border-slate-100">
         <nav role="navigation" aria-label="Primary Navigation" className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div 
             role="button"
             tabIndex={0}
-            aria-label="Lovely Invitation Home"
+            aria-label="Two Hearts, One Journey Home"
             className="text-2xl serif font-bold text-maroon cursor-pointer tracking-tight"
             onClick={() => setCurrentPage('home')}
             onKeyDown={(e) => e.key === 'Enter' && setCurrentPage('home')}
           >
-            Danial & Noor
+            Noor & Danial
           </div>
           <div className="flex items-center gap-4 md:gap-8">
             <button 
@@ -72,8 +78,8 @@ const App: React.FC = () => {
       <footer role="contentinfo" className="py-16 px-6 bg-white border-t border-slate-100 text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="serif text-2xl mb-4 text-maroon italic">“We look forward to celebrating with you”</h2>
-          <p className="text-slate-900 font-semibold text-lg mb-2">Muhammad Danial Siddiqui & Noor Fatima Memon</p>
-          <p className="text-slate-400 text-sm">Contact: <a href="mailto:hello@lovelyinvitation.com" className="hover:text-maroon underline">hello@lovelyinvitation.com</a></p>
+          <p className="text-slate-900 font-semibold text-lg mb-2">Noor Fatima Memon & Muhammad Danial Siddiqui</p>
+          <p className="text-slate-400 text-sm">Contact: <a href="tel:+923368273918" className="hover:text-maroon underline">+923368273918</a></p>
           <div className="mt-8 pt-8 border-t border-slate-50">
             <p className="text-[10px] uppercase tracking-widest text-slate-300">
               Handcrafted for the union of two AI Engineers

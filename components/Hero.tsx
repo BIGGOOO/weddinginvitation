@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
           </span>
         </div>
         <h1 className="text-4xl md:text-6xl mb-6 text-slate-800 tracking-tight leading-none px-4">
-          Muhammad Danial Siddiqui <span className="text-slate-300 font-light">&</span> Noor Fatima Memon
+          Noor Fatima Memon <span className="text-slate-300 font-light">&</span> Muhammad Danial Siddiqui
         </h1>
         <p className="serif text-xl md:text-2xl text-slate-500 italic mb-12">
           Converging in Love, Synchronized in Purpose

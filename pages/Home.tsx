@@ -88,10 +88,10 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       >
         <div className="absolute inset-0 bg-[#FCFBF4]/65"></div>
         <div className="relative z-10 max-w-5xl">
-          <h1 className="text-7xl md:text-9xl mb-8 text-maroon leading-tight reveal">Lovely Invitation</h1>
+          <h1 className="text-7xl md:text-9xl mb-8 text-maroon leading-tight reveal font-bold">Two Hearts, One Journey</h1>
           
-          <p className="serif text-xl md:text-3xl text-slate-700 italic mb-4 max-w-2xl mx-auto leading-relaxed reveal" style={{ transitionDelay: '0.2s' }}>
-            “Together with our families, we invite you to celebrate our wedding”
+          <p className="serif text-xl md:text-3xl text-slate-700 italic mb-4 max-w-4xl mx-auto leading-relaxed reveal" style={{ transitionDelay: '0.2s' }}>
+            “With grateful hearts, together with our families, we invite you to celebrate our wedding and share in our joy.”
           </p>
           <p className="serif text-lg md:text-xl text-maroon font-semibold tracking-[0.2em] uppercase mb-10 reveal" style={{ transitionDelay: '0.4s' }}>
             3 – 7 February 2026
@@ -156,9 +156,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl mb-8 text-maroon reveal">Welcome</h2>
           <p className="text-lg text-slate-600 leading-relaxed mb-12 reveal" style={{ transitionDelay: '0.2s' }}>
-            As two engineers who have spent our careers building neural networks and complex architectures, 
-            we've found that the most significant connection isn't digital—it's the one we share with each other 
-            and with all of you. We are honored to welcome you to this four-day celebration of our union.
+            As engineers who have spent years designing systems, networks, and complex architectures, we have learned that the most meaningful connection is not built with code, but with hearts. What we share with each other, and now with all of you, is the most important bond we will ever create. We are truly honored to welcome you to this four-day celebration of our union.
           </p>
           <div className="w-24 h-px bg-gold mx-auto reveal" style={{ transitionDelay: '0.4s' }}></div>
         </div>
