@@ -34,7 +34,10 @@ const Venue: React.FC = () => {
       try {
         // Use coordinates provided for Walima/Celebration venue
         const data = await getVenueGrounding("24.911276, 67.238557", lat, lng);
-        setVenueData(data);
+        setVenueData({
+          description: data.description || "An elegant open-air space perfect for a cultural and digital union.",
+          uri: data.uri || undefined
+        });
       } catch (err) {
         console.error("Error fetching venue data:", err);
         setError("Unable to retrieve real-time venue intelligence. Please use the static address below.");

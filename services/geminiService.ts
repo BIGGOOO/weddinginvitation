@@ -2,7 +2,7 @@ import { GoogleGenAI, Type } from "@google/genai";
 
 // Story generation service for the wedding couple's history
 export const generateStory = async (style: string) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
   const model = 'gemini-3-flash-preview';
   const prompt = `Rewrite the romantic story of two AI engineers, Noor Fatima Memon and Muhammad Danial Siddiqui, who are getting married in February 2026. 
   They met during an AI hackathon. Danial was working on computer vision and Noor was working on LLMs. 
@@ -27,7 +27,7 @@ export const generateStory = async (style: string) => {
 
 // Maps grounding service for venue location information
 export const getVenueGrounding = async (venueName: string, userLat?: number, userLng?: number) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
   const model = 'gemini-2.5-flash';
   const contents = `Where is ${venueName}? Provide an elegant description and details for a wedding invitation.`;
   
@@ -71,7 +71,7 @@ export const getVenueGrounding = async (venueName: string, userLat?: number, use
  * Generates a personalized RSVP acknowledgment message
  */
 export const generateRSVPAcknowledgment = async (data: { name: string; attending: boolean; message: string }) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
   const model = 'gemini-3-flash-preview';
   const prompt = `Generate a short, warm, and tech-witty wedding RSVP acknowledgment for a guest named ${data.name} who is ${data.attending ? 'attending' : 'not attending'}. 
   Their message to us was: "${data.message}". 
@@ -93,7 +93,7 @@ export const generateRSVPAcknowledgment = async (data: { name: string; attending
  * AI-powered face search in the photo gallery
  */
 export const searchPhotosByFace = async (base64Image: string, galleryItems: any[]) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
   const model = 'gemini-3-flash-preview';
 
   const prompt = `Look at this person's face. We want to find which wedding event galleries they are likely in.
