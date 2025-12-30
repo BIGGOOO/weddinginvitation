@@ -1,3 +1,4 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 
 // Story generation service for the wedding couple's history
@@ -104,17 +105,20 @@ export const searchPhotosByFace = async (base64Image: string, galleryItems: any[
   Respond ONLY with a JSON array of strings.`;
 
   try {
+    // Correcting contents to use the structured parts format for multi-modal requests
     const response = await ai.models.generateContent({
       model,
-      contents: [
-        {
-          inlineData: {
-            mimeType: "image/jpeg",
-            data: base64Image
-          }
-        },
-        { text: prompt }
-      ],
+      contents: {
+        parts: [
+          {
+            inlineData: {
+              mimeType: "image/jpeg",
+              data: base64Image
+            }
+          },
+          { text: prompt }
+        ]
+      },
       config: {
         responseMimeType: "application/json"
       }

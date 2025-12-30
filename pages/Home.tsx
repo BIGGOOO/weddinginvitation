@@ -5,6 +5,7 @@ import FloatingParticles from '../components/FloatingParticles';
 
 interface HomeProps {
   onNavigate: (page: 'home' | 'events' | 'photos') => void;
+  isWalimaOnly?: boolean;
 }
 
 interface TimeLeft {
@@ -14,14 +15,15 @@ interface TimeLeft {
   seconds: number;
 }
 
-const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+const Home: React.FC<HomeProps> = ({ onNavigate, isWalimaOnly }) => {
   const [scrollY, setScrollY] = useState(0);
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const { particles, trigger } = useCelebration();
   const [hasClickedComing, setHasClickedComing] = useState(false);
   
   const calculateTimeLeft = (): TimeLeft | null => {
-    const targetDate = new Date('2026-02-03T00:00:00').getTime();
+    // If Walima only, countdown to Feb 7th
+    const targetDate = new Date(isWalimaOnly ? '2026-02-07T19:00:00' : '2026-02-03T00:00:00').getTime();
     const now = new Date().getTime();
     const difference = targetDate - now;
 
@@ -60,7 +62,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, []);
+  }, [isWalimaOnly]);
 
   const handleImComing = (e: React.MouseEvent) => {
     trigger(e.clientX, e.clientY);
@@ -84,6 +86,12 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       >
         <div className="absolute inset-0 bg-[#FCFBF4]/75"></div>
         <div className="relative z-10 max-w-5xl w-full">
+          {isWalimaOnly && (
+            <div className="mb-6 reveal">
+              <span className="px-4 py-1.5 bg-gold/10 border border-gold/20 rounded-full text-gold text-[10px] font-bold uppercase tracking-[0.4em] animate-pulse">Exclusive Reception Protocol</span>
+            </div>
+          )}
+          
           <h1 className="text-5xl sm:text-7xl md:text-9xl mb-6 sm:mb-8 text-maroon leading-tight reveal font-bold px-2">
             Two Hearts, One Journey
           </h1>
@@ -92,7 +100,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             “With grateful hearts, together with our families, we invite you to celebrate our wedding and share in our joy.”
           </p>
           <p className="serif text-sm sm:text-lg md:text-xl text-maroon font-bold tracking-[0.2em] uppercase mb-8 sm:mb-12 reveal" style={{ transitionDelay: '0.4s' }}>
-            3 – 7 February 2026
+            {isWalimaOnly ? "7 February 2026 • Walima Reception" : "3 – 7 February 2026"}
           </p>
 
           <div 
@@ -151,7 +159,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl mb-6 sm:mb-8 text-maroon reveal">Welcome</h2>
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-10 sm:mb-12 reveal" style={{ transitionDelay: '0.2s' }}>
-            As engineers who have spent years designing systems, we've learned that the most meaningful connection is not built with code, but with hearts. We are truly honored to welcome you to this four-day celebration of our union.
+            As engineers who have spent years designing systems, we've learned that the most meaningful connection is not built with code, but with hearts. We are truly honored to welcome you to this celebration of our union.
           </p>
           <div className="w-20 h-px bg-gold mx-auto reveal" style={{ transitionDelay: '0.4s' }}></div>
         </div>
@@ -163,10 +171,10 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
-              { title: "4 Days of Joy", desc: "A journey from prayers to parties.", icon: "✨" },
-              { title: "Event Timeline", desc: "Complete schedule from Feb 3rd to 7th.", icon: "📅" },
+              { title: isWalimaOnly ? "Walima Reception" : "4 Days of Joy", desc: isWalimaOnly ? "A night of elegance and gratitude." : "A journey from prayers to parties.", icon: "✨" },
+              { title: "Event Timeline", desc: isWalimaOnly ? "The evening protocol for February 7th." : "Complete schedule from Feb 3rd to 7th.", icon: "📅" },
               { title: "Event Locations", desc: "Digital maps for your physical transit.", icon: "📍" },
-              { title: "Photo Archive", desc: "Relive the high-res moments instantly.", icon: "📸" }
+              { title: "RSVP Active", desc: "Please confirm your presence in our stack.", icon: "✉️" }
             ].map((item, idx) => (
               <div 
                 key={idx} 

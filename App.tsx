@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Home from './pages/Home';
 import Events from './pages/Events';
 import Photos from './pages/Photos';
@@ -11,6 +11,14 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const { particles, trigger, triggerPageChange } = useCelebration();
+
+  // Detect invitation mode from URL
+  const inviteMode = useMemo(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('invite'); // 'walima' or null
+  }, []);
+
+  const isWalimaOnly = inviteMode === 'walima';
 
   useEffect(() => {
     if (!isLoading) {
@@ -38,10 +46,12 @@ const App: React.FC = () => {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'home': return <Home onNavigate={setCurrentPage} />;
-      case 'events': return <Events />;
-      case 'photos': return <Photos />;
-      default: return <Home onNavigate={setCurrentPage} />;
+      case 'home': return <Home onNavigate={setCurrentPage} isWalimaOnly={isWalimaOnly} />;
+      case 'events': return <Events isWalimaOnly={isWalimaOnly} />;
+      case 'photos': 
+        if (isWalimaOnly) return <Home onNavigate={setCurrentPage} isWalimaOnly={isWalimaOnly} />;
+        return <Photos />;
+      default: return <Home onNavigate={setCurrentPage} isWalimaOnly={isWalimaOnly} />;
     }
   };
 
@@ -78,12 +88,15 @@ const App: React.FC = () => {
             >
               Events
             </button>
-            <button 
-              onClick={() => handleNavClick('photos')}
-              className={`text-[9px] sm:text-xs uppercase tracking-widest font-bold nav-link ${currentPage === 'photos' ? 'active text-maroon' : 'text-slate-500'}`}
-            >
-              Photos
-            </button>
+            {/* Photos section is hidden if isWalimaOnly is true */}
+            {!isWalimaOnly && (
+              <button 
+                onClick={() => handleNavClick('photos')}
+                className={`text-[9px] sm:text-xs uppercase tracking-widest font-bold nav-link ${currentPage === 'photos' ? 'active text-maroon' : 'text-slate-500'}`}
+              >
+                Photos
+              </button>
+            )}
           </div>
         </nav>
       </header>
